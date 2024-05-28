@@ -9,7 +9,7 @@ const TicketForm = () => {
   const startingTicketData = {
     title: "",
     description: "",
-    category: "",
+    category: "Problema de Hardware",
     priority: 1,
     progress: 0,
     status: "Não Iniciado",
@@ -29,19 +29,20 @@ const TicketForm = () => {
 
   const handleSubmit = async (ev) => {
     ev.preventDefault();
+    console.log(formData);
 
     const res = await fetch("/api/Tickets", {
       method: "POST",
       body: JSON.stringify({ formData }),
-      "content-type": "application/json",
+      "Content-Type": "application/json",
     });
 
     if (!res.ok) {
       throw new Error("Falha ao criar Ticket.");
     }
 
-    router.refresh();
     router.push("/");
+    router.refresh();
   };
 
   return (

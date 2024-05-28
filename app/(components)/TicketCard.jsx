@@ -25,10 +25,10 @@ const TicketCard = ({ ticket }) => {
       <div className="flex mb-3">
         <PriorityDisplay />
         <div className="ml-auto">
-          <DeleteBlock />
+          <DeleteBlock id={ticket._id} />
         </div>
       </div>
-      <h4>{ticket.name}</h4>
+      <h4>{ticket.title}</h4>
       <hr className="h-px border-0 bg-page mb-2" />
       <p className="whitespace-pre-wrap">{ticket.description}</p>
       <div className="flex-grow"></div>
