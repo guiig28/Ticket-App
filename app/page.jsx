@@ -1,15 +1,15 @@
 import TicketCard from "./(components)/TicketCard";
 
 const getTickets = async () => {
-  try {
-    const res = await fetch("http://localhost:3000/api/Tickets", {
-      cache: "no-store",
-    });
+  const res = await fetch("http://localhost:3000/api/Tickets", {
+    cache: "no-store",
+  });
 
-    return res.json();
-  } catch (err) {
-    console.log("Falha ao obter tickets", err);
+  if (!res.ok) {
+    throw new Error("Falha ao obter tickets");
   }
+
+  return res.json();
 };
 
 const Dashboard = async () => {
