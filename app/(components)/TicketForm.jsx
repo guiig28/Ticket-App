@@ -1,9 +1,10 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import { useState } from "react";
+import WarningModal from "./WarningModal";
 
-const TicketForm = ({ ticket }) => {
+const TicketForm = ({ ticket, ticketsArray }) => {
   const router = useRouter();
   const EDITMODE = ticket._id === "new" ? false : true;
 
@@ -27,6 +28,9 @@ const TicketForm = ({ ticket }) => {
 
   const [formData, setFormData] = useState(startingTicketData);
 
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+
   const handleChange = (ev) => {
     const value = ev.target.value;
     const name = ev.target.name;
@@ -48,17 +52,27 @@ const TicketForm = ({ ticket }) => {
       });
 
       if (!res.ok) {
-        throw new Error("Falha ao atualizar Ticket.");
+        setModalIsOpen(true);
+        setModalMessage("Falha ao atualizar Ticket.");
+        return;
       }
     } else {
-      const res = await fetch("/api/Tickets", {
-        method: "POST",
-        body: JSON.stringify({ formData }),
-        "Content-Type": "application/json",
-      });
+      if (ticketsArray.length >= 10) {
+        setModalIsOpen(true);
+        setModalMessage("Não é possível criar mais Tickets. (máx: 10)");
+        return;
+      } else {
+        const res = await fetch("/api/Tickets", {
+          method: "POST",
+          body: JSON.stringify({ formData }),
+          "Content-Type": "application/json",
+        });
 
-      if (!res.ok) {
-        throw new Error("Falha ao criar Ticket.");
+        if (!res.ok) {
+          setModalIsOpen(true);
+          setModalMessage("Falha ao criar Ticket.");
+          return;
+        }
       }
     }
 
@@ -184,6 +198,7 @@ const TicketForm = ({ ticket }) => {
           value={EDITMODE === true ? "Atualizar Ticket" : "Criar Ticket"}
         />
       </form>
+      <WarningModal isOpen={modalIsOpen} message={modalMessage} />
     </div>
   );
 };

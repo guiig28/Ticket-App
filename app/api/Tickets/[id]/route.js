@@ -35,7 +35,7 @@ export async function DELETE(req, { params }) {
 
     return NextResponse.json(
       { message: "Ticket deletado com sucesso" },
-      { status: 204 }
+      { status: 200 }
     );
   } catch (err) {
     return NextResponse.json({ message: "Erro", err }, { status: 500 });

@@ -6,7 +6,7 @@ const getTickets = async () => {
   });
 
   if (!res.ok) {
-    throw new Error("Falha ao obter tickets");
+    throw new Error("Falha ao obter Tickets");
   }
 
   return res.json();

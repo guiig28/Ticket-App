@@ -14,7 +14,11 @@ const Nav = () => {
         </Link>
       </div>
       <div>
-        <p className="text-default-text">email@mail.com</p>
+        <Link href={process.env.GITHUB_LINK} target="_blank">
+          <p className="text-default-text hover:text-gray-300">
+            {process.env.GITHUB_LINK}
+          </p>
+        </Link>
       </div>
     </nav>
   );

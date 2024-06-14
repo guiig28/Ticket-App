@@ -1,15 +1,27 @@
 import TicketForm from "@/app/(components)/TicketForm";
 
 const getTicketById = async (id) => {
-  try {
-    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/Tickets/${id}`, {
-      cache: "no-store",
-    });
+  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/Tickets/${id}`, {
+    cache: "no-store",
+  });
 
-    return res.json();
-  } catch (err) {
-    console.log("Falha ao obter Ticket", err);
+  if (!res.ok) {
+    throw new Error("Falha ao obter Ticket");
   }
+
+  return res.json();
+};
+
+const getTickets = async () => {
+  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/Tickets`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    throw new Error("Falha ao obter Tickets");
+  }
+
+  return res.json();
 };
 
 let updateTicketData = {};
@@ -26,7 +38,9 @@ const TicketPage = async ({ params }) => {
     };
   }
 
-  return <TicketForm ticket={updateTicketData} />;
+  const { tickets } = await getTickets();
+
+  return <TicketForm ticket={updateTicketData} ticketsArray={tickets} />;
 };
 
 export default TicketPage;

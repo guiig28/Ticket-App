@@ -37,6 +37,8 @@ Antes de iniciar, certifique-se de ter os seguintes requisitos instalados em seu
 3. Crie um arquivo `.env.local` na raiz do projeto e adicione as variáveis de ambiente necessárias para a conexão com o MongoDB Atlas. Por exemplo:
    ```
    MONGODB_URI=SUA_URI_DO_MONGODB_ATLAS
+   NEXTAUTH_URL=URL_DO_PROJETO
+   GITHUB_LINK=LINK_DO_GITHUB
    ```
 4. Execute `npm run dev` ou `yarn dev` para iniciar o servidor de desenvolvimento.
 5. Acesse a aplicação em `http://localhost:3000` no seu navegador.

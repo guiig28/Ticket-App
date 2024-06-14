@@ -12,9 +12,11 @@ const DeleteBlock = ({ id }) => {
       method: "DELETE",
     });
 
-    if (res.ok) {
-      router.refresh();
+    if (!res.ok) {
+      throw new Error("Falha ao deletar Ticket.");
     }
+
+    router.refresh();
   };
 
   return (
