@@ -1,6 +1,6 @@
-# Gerenciador de Tickets para Resolução de Problemas de Computação
+# Ticket-App
 
-Este é um projeto de aplicação web desenvolvida em React.js com o auxílio do Next.js, utilizando o Mongoose para se conectar ao banco de dados MongoDB Atlas. A aplicação foi criada como parte de um estudo de desenvolvimento fullstack com base em uma [videoaula](https://youtu.be/H0vhkoXljq0?si=7HMJV_szs6oAUK4g) fornecida pela instituição FreeCodeCamp.org.
+Ticket-App é um projeto de aplicação web desenvolvida em React.js com o auxílio do Next.js, utilizando o Mongoose para se conectar ao banco de dados MongoDB Atlas. A aplicação foi criada como parte de um estudo de desenvolvimento fullstack com base em uma [videoaula](https://youtu.be/H0vhkoXljq0?si=7HMJV_szs6oAUK4g) fornecida pela instituição FreeCodeCamp.org, e tem como função gerenciar tickets para a resolução de problemas de computação.
 
 ## Visão Geral
 
